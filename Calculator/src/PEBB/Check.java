@@ -30,7 +30,7 @@ public class Check extends HttpServlet {
         	writer.println("<html>" +
         	"			<head>" + 
         	"				<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">" + 
-        	"				<link rel=\"stylesheet\" href=\"https://www.w3schools.com/w3css/4/w3.css\">" + 
+        	"				<lin k rel=\"stylesheet\" href=\"https://www.w3schools.com/w3css/4/w3.css\">" + 
         	"			</head>" +
         	"			<body>" + 
         	"       		<form class=\"w3-container w3-card-4\" action=\"Authorization.html\">" +
@@ -53,9 +53,8 @@ public class Check extends HttpServlet {
 	    Scanner scan = new Scanner(read);
 	     
 	    while(scan.hasNextLine()) {
-	    		if(login.equals(scan.nextLine()) && password.equals(scan.nextLine())) {
-	    	 
-	    			check = true;
+	    	if(login.equals(scan.nextLine()) && password.equals(scan.nextLine())) {
+	    		check = true;
 	    		break;
 	    	}
 	    }
