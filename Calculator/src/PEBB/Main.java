@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/Main")
-public class Main extends HttpServlet {
+public class Main extends HttpServlet { //Класс для расчета расхода топлива и вывода результатов
 	private static final long serialVersionUID = 1L;
 	public static int k, index, pass;
 	public static double lugg, dist;
@@ -34,6 +34,11 @@ public class Main extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
         PrintWriter writer = response.getWriter();
+        /*
+         * Вызов метода проверки введеных данных
+         * Если метод возвращает true, то выполняется расчет
+         * Иначе пользователя перенаправляет на страницу ошибки
+         */
         if(checkData(request.getParameter("passenger"), request.getParameter("luggage"), request.getParameter("distance"))){
        		double Smin, Smax, MinSum, MaxSum = 0, k1, k2;
        	 	
@@ -43,10 +48,12 @@ public class Main extends HttpServlet {
        		k = Integer.parseInt(request.getParameter("season"));
        		index = Integer.parseInt(request.getParameter("vehicle"));
        			
-       		lugg = lugg < 5 ? 0 : lugg;
-       		k1 = k == 0 ? 0 : 0.14;
-	    	k2 = k == 0 ? 0 : 0.19;
-	    		
+       		lugg = lugg < 5 ? 0 : lugg; //Игнорирование веса багажа, если он меньше 5 кг
+    		k1 = k == 0 ? 0 : 0.14; //Установка значения переменной в зависимости от выбранного пользователем сезона
+    		k2 = k == 0 ? 0 : 0.19; //Установка значения переменной в зависимости от выбранного пользователем сезона
+    		/*
+    		 * Расчет
+    		 */	
 	    	Smin = 0.01 * data[index][0] * dist * (((pass + 1) * 62 + lugg) * i1 + k1 + 1);
 	    	Smax = 0.01 * data[index][0] * dist * (((pass + 1) * 62 + lugg) * i2 + k2 + 1);
 	   		
@@ -58,35 +65,51 @@ public class Main extends HttpServlet {
 	    		
 	    	MinSum = Math.round(MinSum * 100.0) / 100.0;
 	    	MaxSum = Math.round(MaxSum * 100.0) / 100.0;
-	    		
+	    	/*
+    		 * Вывод результатов расчета, написанный в виде HTML-кода, 
+    		 * в котором реализована возможность возврата на страницу калькулятора
+    		 */	
 	    	writer.println("<html>" +
-        		"		<head>" + 
-        		"			<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">" + 
-        		"			<link rel=\"stylesheet\" href=\"https://www.w3schools.com/w3css/4/w3.css\">" + 
-        		"	        <title>Result</title>" +
-        		"		</head>" +
-        		"		<body>" + 
-        		"       	<form class=\"w3-container w3-card-4\" action=\"MainView.html\">" +
-        		"          		<h2 class=\"w3-text-teal\">For this trip you need to:</h2>" +
-        		"              	<ul class=\"w3-ul\">" +
-				"					<li class=\"w3-text-teal\">from " + Smin + " to " + Smax + " liters of gasoline</li>" +
-				"					<li class=\"w3-text-teal\">from " + MinSum + " to " + MaxSum + " rubles of money</li>" +
-				"				</ul>" +
-        		"				<p><button class=\"w3-btn w3-teal\">Calculator</button></p>" + 
-        		"       	</form>" +
-        		"		</body>" +
-        		"	</html>");		      				    			    				    	        	    	        	    	            	            	        	 		
+		        		"		<head>" + 
+		        		"			<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">" + 
+		        		"			<link rel=\"stylesheet\" href=\"https://www.w3schools.com/w3css/4/w3.css\">" + 
+		        		"	        <title>Result</title>" +
+		        		"		</head>" +
+		        		"		<body>" + 
+		        		"       	<form class=\"w3-container w3-card-4\" action=\"MainView.html\">" +
+		        		"          		<h2 class=\"w3-text-teal\">For this trip you need to:</h2>" +
+		        		"              	<ul class=\"w3-ul\">" +
+						"					<li class=\"w3-text-teal\">from " + Smin + " to " + Smax + " liters of gasoline</li>" +
+						"					<li class=\"w3-text-teal\">from " + MinSum + " to " + MaxSum + " rubles of money</li>" +
+						"				</ul>" +
+		        		"				<p><button class=\"w3-btn w3-teal\">Calculator</button></p>" + 
+		        		"       	</form>" +
+		        		"		</body>" +
+		        		"	</html>");		      				    			    				    	        	    	        	    	            	            	        	 		
         }
         else
-        	response.sendRedirect("ErrorPage.html");
+           	response.sendRedirect("ErrorPage.html"); //Перенаправление на страницу ошибки
+	
 	}
-	public static boolean checkData(String passenStr, String luggStr, String distStr){
+	
+	public static boolean checkData(String passenStr, String luggStr, String distStr){ //Метод проверки введенных данных
 		int size = 0;
-        String[] cc = {"1","2","3","4","5","6","7","8","9","0","."};
-		if(passenStr.equals("") || luggStr.equals("") || distStr.equals(""))
+        String[] cc = {"1","2","3","4","5","6","7","8","9","0","."}; //Массив возможных символов в полях
+        /*
+         * Далее следует проверка на заполненность полей
+         * Если хотя бы одно поле не заполнено, то возвращается false и дальше проверка не идет по причине того,
+         * что иначе код попробует получить значение этих полей для проверки, а их не окажется и браузер объявит об ошибке 500.
+         */
+        if(passenStr.equals("") || luggStr.equals("") || distStr.equals(""))
 			return false;
 		else{
+			//Проверка на "чистоту" поля "Number of passengers"
 			for(int i = 0; i < passenStr.length(); i++) {
+				/*
+	    		 * В следующем цикле игнорируется последний элемент массива, 
+	    		 * так как он является точкой, 
+	    		 * а количество пассажиров должно быть целым числом.
+	    		 */
 	    		for (int j = 0; j < 10; j++) {
 		    		if(cc[j].equals(passenStr.substring(i, i+1))) {
 		    			size++;
@@ -95,8 +118,9 @@ public class Main extends HttpServlet {
 	    		}
 	    	}
 	    	if (size != passenStr.length() || ((Integer.parseInt(passenStr) < 0) || (Integer.parseInt(passenStr) > 4))) 
-	    		return false;
-	    		    	
+	    		return false; //Возврат false с дальнейшим выходом из метода
+	    	
+	    	//Проверка на "чистоту" поля "Luggage weight"	    	
 	    	size = 0;
 	    	for(int i = 0; i < luggStr.length(); i++) {
 	    		for (int j = 0; j < 11; j++) {
@@ -107,9 +131,9 @@ public class Main extends HttpServlet {
 	    		}
 	    	}
 	    	if (size != luggStr.length()) 
-	    		return false;
+	    		return false; //Возврат false с дальнейшим выходом из метода
 	
-	    	
+	    	//Проверка на "чистоту" поля "Distance"
 	    	size = 0; 
 	    	for(int i = 0; i < distStr.length(); i++) { 
 	    		for (int j = 0; j < 11; j++) {
@@ -120,9 +144,9 @@ public class Main extends HttpServlet {
 	    		}
 	    	}
 	    	if (size != distStr.length()) 
-	    		return false; 
+	    		return false; //Возврат false с дальнейшим выходом из метода
 		}
-		return true;
+		return true; //Если все проверки прошли упешно, то возвращается true
 	}
 }
 
