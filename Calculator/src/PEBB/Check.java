@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/Check")
 public class Check extends HttpServlet { //Класс для проверки введеных логина и пароля 
 	private static final long serialVersionUID = 1L;
 	public static String login, password;
@@ -39,7 +38,7 @@ public class Check extends HttpServlet { //Класс для проверки введеных логина и 
         	writer.println("<html>" +
         			"			<head>" + 
         			"				<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">" + 
-        			"				<lin k rel=\"stylesheet\" href=\"https://www.w3schools.com/w3css/4/w3.css\">" + 
+        			"				<link rel=\"stylesheet\" href=\"https://www.w3schools.com/w3css/4/w3.css\">" + 
         			"               <title>Incorrect login or passwrod</title>" +
         			"			</head>" +
 		        	"			<body>" + 

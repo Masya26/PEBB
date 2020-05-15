@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/Main")
 public class Main extends HttpServlet { // ласс дл€ расчета расхода топлива и вывода результатов
 	private static final long serialVersionUID = 1L;
 	public static int k, index, pass;
@@ -40,52 +39,52 @@ public class Main extends HttpServlet { // ласс дл€ расчета расхода топлива и вы
          * »наче пользовател€ перенаправл€ет на страницу ошибки
          */
         if(checkData(request.getParameter("passenger"), request.getParameter("luggage"), request.getParameter("distance"))){
-       		double Smin, Smax, MinSum, MaxSum = 0, k1, k2;
-       	 	
-       		pass = Integer.parseInt(request.getParameter("passenger"));
-    		lugg = Double.parseDouble(request.getParameter("luggage"));
-      		dist = Double.parseDouble(request.getParameter("distance"));
-       		k = Integer.parseInt(request.getParameter("season"));
-       		index = Integer.parseInt(request.getParameter("vehicle"));
-       			
-       		lugg = lugg < 5 ? 0 : lugg; //»гнорирование веса багажа, если он меньше 5 кг
-    		k1 = k == 0 ? 0 : 0.14; //”становка значени€ переменной в зависимости от выбранного пользователем сезона
-    		k2 = k == 0 ? 0 : 0.19; //”становка значени€ переменной в зависимости от выбранного пользователем сезона
-    		/*
-    		 * –асчет
-    		 */	
-	    	Smin = 0.01 * data[index][0] * dist * (((pass + 1) * 62 + lugg) * i1 + k1 + 1);
-	    	Smax = 0.01 * data[index][0] * dist * (((pass + 1) * 62 + lugg) * i2 + k2 + 1);
-	   		
-	    	MinSum = Smin * data[index][1];
-	    	MaxSum = Smax * data[index][1];
-	    		
-	    	Smin = Math.round(Smin * 100.0) / 100.0;
-	    	Smax = Math.round(Smax * 100.0) / 100.0;
-	    		
-	    	MinSum = Math.round(MinSum * 100.0) / 100.0;
-	    	MaxSum = Math.round(MaxSum * 100.0) / 100.0;
-	    	/*
-    		 * ¬ывод результатов расчета, написанный в виде HTML-кода, 
-    		 * в котором реализована возможность возврата на страницу калькул€тора
-    		 */	
-	    	writer.println("<html>" +
-		        		"		<head>" + 
-		        		"			<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">" + 
-		        		"			<link rel=\"stylesheet\" href=\"https://www.w3schools.com/w3css/4/w3.css\">" + 
-		        		"	        <title>Result</title>" +
-		        		"		</head>" +
-		        		"		<body>" + 
-		        		"       	<form class=\"w3-container w3-card-4\" action=\"MainView.html\">" +
-		        		"          		<h2 class=\"w3-text-teal\">For this trip you need to:</h2>" +
-		        		"              	<ul class=\"w3-ul\">" +
-						"					<li class=\"w3-text-teal\">from " + Smin + " to " + Smax + " liters of gasoline</li>" +
-						"					<li class=\"w3-text-teal\">from " + MinSum + " to " + MaxSum + " rubles of money</li>" +
-						"				</ul>" +
-		        		"				<p><button class=\"w3-btn w3-teal\">Calculator</button></p>" + 
-		        		"       	</form>" +
-		        		"		</body>" +
-		        		"	</html>");		      				    			    				    	        	    	        	    	            	            	        	 		
+	       		double Smin, Smax, MinSum, MaxSum = 0, k1, k2;
+	       	 	
+	       		pass = Integer.parseInt(request.getParameter("passenger"));
+	    		lugg = Double.parseDouble(request.getParameter("luggage"));
+	      		dist = Double.parseDouble(request.getParameter("distance"));
+	       		k = Integer.parseInt(request.getParameter("season"));
+	       		index = Integer.parseInt(request.getParameter("vehicle"));
+	       			
+	       		lugg = lugg < 5 ? 0 : lugg; //»гнорирование веса багажа, если он меньше 5 кг
+	    		k1 = k == 0 ? 0 : 0.14; //”становка значени€ переменной в зависимости от выбранного пользователем сезона
+	    		k2 = k == 0 ? 0 : 0.19; //”становка значени€ переменной в зависимости от выбранного пользователем сезона
+	    		/*
+	    		 * –асчет
+	    		 */	
+		    	Smin = 0.01 * data[index][0] * dist * (((pass + 1) * 62 + lugg) * i1 + k1 + 1);
+		    	Smax = 0.01 * data[index][0] * dist * (((pass + 1) * 62 + lugg) * i2 + k2 + 1);
+		   		
+		    	MinSum = Smin * data[index][1];
+		    	MaxSum = Smax * data[index][1];
+		    		
+		    	Smin = Math.round(Smin * 100.0) / 100.0;
+		    	Smax = Math.round(Smax * 100.0) / 100.0;
+		    		
+		    	MinSum = Math.round(MinSum * 100.0) / 100.0;
+		    	MaxSum = Math.round(MaxSum * 100.0) / 100.0;
+		    	/*
+	    		 * ¬ывод результатов расчета, написанный в виде HTML-кода, 
+	    		 * в котором реализована возможность возврата на страницу калькул€тора
+	    		 */	
+		    	writer.println("<html>" +
+			        "				<head>" + 
+			       	"					<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">" + 
+			     	"					<link rel=\"stylesheet\" href=\"https://www.w3schools.com/w3css/4/w3.css\">" + 
+			      	"	  		  	    <title>Result</title>" +
+			       	"				</head>" +
+			       	"				<body>" + 
+			       	"   		    	<form class=\"w3-container w3-card-4\" action=\"MainView.html\">" +
+			       	"     		     		<h2 class=\"w3-text-teal\">For this trip you need to:</h2>" +
+			       	"       		       	<ul name=result class=\"w3-ul\">" +
+					"							<li name=gasoline class=\"w3-text-teal\">from " + Smin + " to " + Smax + " liters of gasoline</li>" +
+					"							<li name=money class=\"w3-text-teal\">from " + MinSum + " to " + MaxSum + " rubles of money</li>" +
+					"						</ul>" +
+		        	"						<p><button class=\"w3-btn w3-teal\">Calculator</button></p>" + 
+			       	"      			 	</form>" +
+			       	"				</body>" +
+			        "			</html>");		      				    			    				    	        	    	        	    	            	            	        	 		
         }
         else
            	response.sendRedirect("ErrorPage.html"); //ѕеренаправление на страницу ошибки
@@ -149,6 +148,3 @@ public class Main extends HttpServlet { // ласс дл€ расчета расхода топлива и вы
 		return true; //≈сли все проверки прошли упешно, то возвращаетс€ true
 	}
 }
-
-
-
