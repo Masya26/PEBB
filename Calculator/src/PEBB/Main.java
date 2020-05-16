@@ -1,6 +1,7 @@
 package PEBB;
 
 import java.io.IOException;
+import java.util.Date;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,7 +41,7 @@ public class Main extends HttpServlet { //Класс для расчета расхода топлива и вы
          */
         if(checkData(request.getParameter("passenger"), request.getParameter("luggage"), request.getParameter("distance"))){
 	       		double Smin, Smax, MinSum, MaxSum = 0, k1, k2;
-	       	 	
+	       	 	Date date =new Date();
 	       		pass = Integer.parseInt(request.getParameter("passenger"));
 	    		lugg = Double.parseDouble(request.getParameter("luggage"));
 	      		dist = Double.parseDouble(request.getParameter("distance"));
@@ -84,6 +85,7 @@ public class Main extends HttpServlet { //Класс для расчета расхода топлива и вы
 		        	"						<p><button class=\"w3-btn w3-blue\">Calculator</button></p>" + 
 			       	"      			 	</form>" +
 		        	"                   <label class=\"w3-text-blue\"><b>Developed by A.Bikbulatov, A.Burakanov, V.Eliseeva, A.Pechenkina</b></label>" +
+		        	"                   <p><label class=\"w3-text-blue\"><b>"+date+"</b></label><p>" +
 			       	"				</body>" +
 			        "			</html>");		      				    			    				    	        	    	        	    	            	            	        	 		
         }
