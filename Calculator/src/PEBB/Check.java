@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class Check extends HttpServlet { //Класс для проверки введеных логина и пароля 
+public class Check extends HttpServlet { //РљР»Р°СЃСЃ РґР»СЏ РїСЂРѕРІРµСЂРєРё РІРІРµРґРµРЅС‹С… Р»РѕРіРёРЅР° Рё РїР°СЂРѕР»СЏ 
 	private static final long serialVersionUID = 1L;
 	public static String login, password;
 
@@ -18,45 +18,45 @@ public class Check extends HttpServlet { //Класс для проверки введеных логина и 
 		
 		response.setContentType("text/html");
         PrintWriter writer = response.getWriter();
-        //Получение значений логина и пароля с формы HTML-страницы
+        //РџРѕР»СѓС‡РµРЅРёРµ Р·РЅР°С‡РµРЅРёР№ Р»РѕРіРёРЅР° Рё РїР°СЂРѕР»СЏ СЃ С„РѕСЂРјС‹ HTML-СЃС‚СЂР°РЅРёС†С‹
         login = request.getParameter("login");
         password = request.getParameter("password");
         String appPath = request.getServletContext().getRealPath("");
         /*
-         * Вызов метода проверки введеных логина и пароля
-         * Если метод возвращает true, то пользователя перенаправляет на страницу калькулятора
-         * Иначе пользователю выводится ошибка
+         * Р’С‹Р·РѕРІ РјРµС‚РѕРґР° РїСЂРѕРІРµСЂРєРё РІРІРµРґРµРЅС‹С… Р»РѕРіРёРЅР° Рё РїР°СЂРѕР»СЏ
+         * Р•СЃР»Рё РјРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ true, С‚Рѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РїРµСЂРµРЅР°РїСЂР°РІР»СЏРµС‚ РЅР° СЃС‚СЂР°РЅРёС†Сѓ РєР°Р»СЊРєСѓР»СЏС‚РѕСЂР°
+         * РРЅР°С‡Рµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ РІС‹РІРѕРґРёС‚СЃСЏ РѕС€РёР±РєР°
          */
         if(checkLogAndPass(appPath)) 
-        	response.sendRedirect("MainView.html"); //Перенаправление на страницу калькулятора
+        	response.sendRedirect("MainView.html"); //РџРµСЂРµРЅР°РїСЂР°РІР»РµРЅРёРµ РЅР° СЃС‚СЂР°РЅРёС†Сѓ РєР°Р»СЊРєСѓР»СЏС‚РѕСЂР°
         else
         	/*
-    		 * Вывод ошибки, написанный в виде HTML-кода, 
-    		 * в котором реализована возможность возврата на страницу авторизации
-    		 * для повторной попытки входа
+    		 * Р’С‹РІРѕРґ РѕС€РёР±РєРё, РЅР°РїРёСЃР°РЅРЅС‹Р№ РІ РІРёРґРµ HTML-РєРѕРґР°, 
+    		 * РІ РєРѕС‚РѕСЂРѕРј СЂРµР°Р»РёР·РѕРІР°РЅР° РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ РІРѕР·РІСЂР°С‚Р° РЅР° СЃС‚СЂР°РЅРёС†Сѓ Р°РІС‚РѕСЂРёР·Р°С†РёРё
+    		 * РґР»СЏ РїРѕРІС‚РѕСЂРЅРѕР№ РїРѕРїС‹С‚РєРё РІС…РѕРґР°
     		 */
         	writer.println("<html>" +
         			"			<head>" + 
         			"				<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">" + 
         			"				<link rel=\"stylesheet\" href=\"https://www.w3schools.com/w3css/4/w3.css\">" + 
-        			"               <title>Incorrect login or passwrod</title>" +
+        			"               <title>Incorrect login or password</title>" +
         			"			</head>" +
 		        	"			<body>" + 
 		        	"       		<form class=\"w3-container w3-card-4\" action=\"Authorization.html\">" +
-		        	"                   <h2 class=\"w3-text-blue\">Login or password is incorrect</h2>" +
-		        	"					<p><button class=\"w3-btn w3-teal\">Try again</button></p>" + 
+		        	"                   <h2 class=\"w3-text-blue\">Incorrect login or password</h2>" +
+		        	"					<p><button class=\"w3-btn w3-blue\">Try again</button></p>" + 
 		        	"       		</form>" +
 		        	"			</body>" +
 		        	"		</html>");
 	}
 	
-	public static boolean checkLogAndPass(String appPath) throws IOException {//Метод проверки введенных логина и пароля
+	public static boolean checkLogAndPass(String appPath) throws IOException {//РњРµС‚РѕРґ РїСЂРѕРІРµСЂРєРё РІРІРµРґРµРЅРЅС‹С… Р»РѕРіРёРЅР° Рё РїР°СЂРѕР»СЏ
 
 		FileReader read = new FileReader(appPath+"WEB-INF\\classes\\data.txt"); 
 	    Scanner scan = new Scanner(read);
 	    /*
-	     * Следующий цикл проверяет наличие введеных логина и пароля в текстовом файле
-	     * Если проверка успешна, то метод возвращает значение true 
+	     * РЎР»РµРґСѓСЋС‰РёР№ С†РёРєР» РїСЂРѕРІРµСЂСЏРµС‚ РЅР°Р»РёС‡РёРµ РІРІРµРґРµРЅС‹С… Р»РѕРіРёРЅР° Рё РїР°СЂРѕР»СЏ РІ С‚РµРєСЃС‚РѕРІРѕРј С„Р°Р№Р»Рµ
+	     * Р•СЃР»Рё РїСЂРѕРІРµСЂРєР° СѓСЃРїРµС€РЅР°, С‚Рѕ РјРµС‚РѕРґ РІРѕР·РІСЂР°С‰Р°РµС‚ Р·РЅР°С‡РµРЅРёРµ true 
 	     */
 	    while(scan.hasNextLine()) {
 	    	if(login.equals(scan.nextLine()) && password.equals(scan.nextLine())) {
@@ -65,6 +65,6 @@ public class Check extends HttpServlet { //Класс для проверки введеных логина и 
 	    }
 	    
 	    read.close();
-		return false; //Возвращение значения false, если проверка прошла неудачно 
+		return false; //Р’РѕР·РІСЂР°С‰РµРЅРёРµ Р·РЅР°С‡РµРЅРёСЏ false, РµСЃР»Рё РїСЂРѕРІРµСЂРєР° РїСЂРѕС€Р»Р° РЅРµСѓРґР°С‡РЅРѕ 
 	}
 }

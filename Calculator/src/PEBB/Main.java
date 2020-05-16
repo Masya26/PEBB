@@ -73,18 +73,18 @@ public class Main extends HttpServlet { //Класс для расчета расхода топлива и вы
 			        "				<head>" + 
 			       	"					<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">" + 
 			     	"					<link rel=\"stylesheet\" href=\"https://www.w3schools.com/w3css/4/w3.css\">" + 
-			      	"	  		  	    <title>Result</title>" +
+			      	"	  		  	    <title>Результат</title>" +
 			       	"				</head>" +
 			       	"				<body>" + 
 			       	"   		    	<form class=\"w3-container w3-card-4\" action=\"MainView.html\">" +
-			       	"     		     		<h2 class=\"w3-text-blue\">For this trip you need to:</h2>" +
+			       	"     		     		<h2 class=\"w3-text-blue\">Для данной поездки Вам необходимо:</h2>" +
 			       	"       		       	<ul name=result class=\"w3-ul\">" +
-					"							<li name=gasoline class=\"w3-text-blue\">from " + Smin + " to " + Smax + " liters of gasoline</li>" +
-					"							<li name=money class=\"w3-text-blue\">from " + MinSum + " to " + MaxSum + " rubles of money</li>" +
+					"							<li name=gasoline class=\"w3-text-blue\">от " + Smin + " до " + Smax + " литров бензина</li>" +
+					"							<li name=money class=\"w3-text-blue\">от " + MinSum + " до " + MaxSum + " рублей денег</li>" +
 					"						</ul>" +
-		        	"						<p><button class=\"w3-btn w3-blue\">Calculator</button></p>" + 
+		        	"						<p><button class=\"w3-btn w3-blue\">Калькулятор</button></p>" + 
 			       	"      			 	</form>" +
-		        	"                   <label class=\"w3-text-blue\"><b>Developed by A.Bikbulatov, A.Burakanov, V.Eliseeva, A.Pechenkina</b></label>" +
+		        	"                   <label class=\"w3-text-blue\"><b>Разработан Бикбулатовым А., Буракановым А., Елисеевой В., Печенкиной А.</b></label>" +
 		        	"                   <p><label class=\"w3-text-blue\"><b>"+date+"</b></label><p>" +
 			       	"				</body>" +
 			        "			</html>");		      				    			    				    	        	    	        	    	            	            	        	 		
