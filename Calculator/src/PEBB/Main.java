@@ -83,6 +83,7 @@ public class Main extends HttpServlet { //Класс для расчета расхода топлива и вы
 					"						</ul>" +
 		        	"						<p><button class=\"w3-btn w3-blue\">Calculator</button></p>" + 
 			       	"      			 	</form>" +
+		        	"                   <label class=\"w3-text-blue\"><b>Developed by A.Bikbulatov, A.Burakanov, V.Eliseeva, A.Pechenkina</b></label>" +
 			       	"				</body>" +
 			        "			</html>");		      				    			    				    	        	    	        	    	            	            	        	 		
         }
