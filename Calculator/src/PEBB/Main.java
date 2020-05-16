@@ -76,12 +76,12 @@ public class Main extends HttpServlet { //Класс для расчета расхода топлива и вы
 			       	"				</head>" +
 			       	"				<body>" + 
 			       	"   		    	<form class=\"w3-container w3-card-4\" action=\"MainView.html\">" +
-			       	"     		     		<h2 class=\"w3-text-teal\">For this trip you need to:</h2>" +
+			       	"     		     		<h2 class=\"w3-text-blue\">For this trip you need to:</h2>" +
 			       	"       		       	<ul name=result class=\"w3-ul\">" +
-					"							<li name=gasoline class=\"w3-text-teal\">from " + Smin + " to " + Smax + " liters of gasoline</li>" +
-					"							<li name=money class=\"w3-text-teal\">from " + MinSum + " to " + MaxSum + " rubles of money</li>" +
+					"							<li name=gasoline class=\"w3-text-blue\">from " + Smin + " to " + Smax + " liters of gasoline</li>" +
+					"							<li name=money class=\"w3-text-blue\">from " + MinSum + " to " + MaxSum + " rubles of money</li>" +
 					"						</ul>" +
-		        	"						<p><button class=\"w3-btn w3-teal\">Calculator</button></p>" + 
+		        	"						<p><button class=\"w3-btn w3-blue\">Calculator</button></p>" + 
 			       	"      			 	</form>" +
 			       	"				</body>" +
 			        "			</html>");		      				    			    				    	        	    	        	    	            	            	        	 		

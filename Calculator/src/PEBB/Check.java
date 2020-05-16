@@ -43,7 +43,7 @@ public class Check extends HttpServlet { //Класс для проверки введеных логина и 
         			"			</head>" +
 		        	"			<body>" + 
 		        	"       		<form class=\"w3-container w3-card-4\" action=\"Authorization.html\">" +
-		        	"                   <h2 class=\"w3-text-teal\">Login or password is incorrect</h2>" +
+		        	"                   <h2 class=\"w3-text-blue\">Login or password is incorrect</h2>" +
 		        	"					<p><button class=\"w3-btn w3-teal\">Try again</button></p>" + 
 		        	"       		</form>" +
 		        	"			</body>" +
